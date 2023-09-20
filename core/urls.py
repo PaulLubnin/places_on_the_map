@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from afisha.views import Index
+from places.views import Index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
