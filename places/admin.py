@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import EventOrganizer
 
-# Register your models here.
+
+@admin.register(EventOrganizer)
+class AdminEventOrganizer(admin.ModelAdmin):
+    list_display = ('title',)
