@@ -40,3 +40,30 @@ class EventOrganizer(models.Model):
         coordinates = (self.longitude, self.latitude)
         return coordinates
 
+
+class Image(models.Model):
+    """Фотографии организаторов мероприятий."""
+
+    event_organizer = models.ForeignKey(
+        EventOrganizer,
+        verbose_name='Event Organizer',
+        on_delete=models.CASCADE,
+        related_name='images',
+    )
+    image = models.ImageField(
+        'Image',
+        upload_to=f'images/',
+        blank=False
+    )
+    image_order = models.PositiveIntegerField(
+        default='1',
+        unique=True
+    )
+
+    class Meta:
+        verbose_name = 'Фотография'
+        verbose_name_plural = 'Фотографии'
+
+    def __str__(self):
+        # todo: сделать вывод айдишника или порядкового номера
+        return f'ID:{self.id}, {self.event_organizer.title}'
