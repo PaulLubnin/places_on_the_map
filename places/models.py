@@ -46,16 +46,17 @@ class Image(models.Model):
 
     event_organizer = models.ForeignKey(
         EventOrganizer,
-        verbose_name='Event Organizer',
+        verbose_name='Организатор',
         on_delete=models.CASCADE,
         related_name='images',
     )
     image = models.ImageField(
-        'Image',
+        'Картинка',
         upload_to=f'images/',
         blank=False
     )
     image_order = models.PositiveIntegerField(
+        'Порядковый номер',
         default='1',
     )
 
@@ -64,5 +65,4 @@ class Image(models.Model):
         verbose_name_plural = 'Фотографии'
 
     def __str__(self):
-        # todo: сделать вывод айдишника или порядкового номера
-        return f'ID:{self.id}, {self.event_organizer.title}'
+        return f'{self.image_order} {self.event_organizer.title}'

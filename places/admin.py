@@ -9,4 +9,4 @@ class AdminEventOrganizer(admin.ModelAdmin):
 
 @admin.register(Image)
 class AdminImage(admin.ModelAdmin):
-    list_display = ('event_organizer',)
+    list_display = ('__str__',)
