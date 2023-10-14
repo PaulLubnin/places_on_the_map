@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
             name='EventOrganizer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=128, unique=True, verbose_name='Title')),
-                ('short_description', models.TextField(blank=True, max_length=512, verbose_name='Short description')),
-                ('long_description', models.TextField(blank=True, verbose_name='Long description')),
-                ('longitude', models.FloatField(default=0, verbose_name='Longitude')),
-                ('latitude', models.FloatField(default=0, verbose_name='Latitude')),
+                ('title', models.CharField(max_length=128, unique=True, verbose_name='Название компании')),
+                ('short_description', models.TextField(blank=True, max_length=1024, verbose_name='Краткое описание')),
+                ('long_description', models.TextField(blank=True, verbose_name='Описание')),
+                ('longitude', models.FloatField(default=0, verbose_name='Долгота')),
+                ('latitude', models.FloatField(default=0, verbose_name='Широта')),
             ],
             options={
                 'verbose_name': 'Организатор',

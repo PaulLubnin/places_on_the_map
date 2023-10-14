@@ -5,25 +5,25 @@ class EventOrganizer(models.Model):
     """Организаторы мероприятий."""
 
     title = models.CharField(
-        'Title',
+        'Название компании',
         max_length=128,
         unique=True
     )
     short_description = models.TextField(
-        'Short description',
-        max_length=512,
+        'Краткое описание',
+        max_length=1024,
         blank=True
     )
     long_description = models.TextField(
-        'Long description',
+        'Описание',
         blank=True
     )
     longitude = models.FloatField(
-        'Longitude',
+        'Долгота',
         default=0
     )
     latitude = models.FloatField(
-        'Latitude',
+        'Широта',
         default=0
     )
 
@@ -57,7 +57,6 @@ class Image(models.Model):
     )
     image_order = models.PositiveIntegerField(
         default='1',
-        unique=True
     )
 
     class Meta:
