@@ -1,10 +1,11 @@
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import EventOrganizer, Image
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     fields = ('image', 'get_preview', 'image_order',)
     readonly_fields = ('get_preview',)
@@ -23,5 +24,5 @@ class AdminEventOrganizer(admin.ModelAdmin):
 
 
 @admin.register(Image)
-class AdminImage(admin.ModelAdmin):
+class AdminImage(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('__str__',)

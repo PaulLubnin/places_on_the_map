@@ -58,11 +58,14 @@ class Image(models.Model):
     image_order = models.PositiveIntegerField(
         'Порядковый номер',
         default='1',
+        blank=False,
+        null=False,
     )
 
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
+        ordering = ('image_order',)
 
     def __str__(self):
         return f'{self.image_order} {self.event_organizer.title}'
