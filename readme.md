@@ -30,9 +30,9 @@ pip install -r requirements.txt
 
 Создайте `.env` файл, в нем определите переменные:
 ```
-DEBUG
-DJANGO_SECRET_KEY
-ALLOWED_HOSTS
+DEBUG=True
+DJANGO_SECRET_KEY=long string
+ALLOWED_HOSTS=localhost, 127.0.0.1
 ```
 
 ## Как запустить:
