@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce import models as tinymce_models
 
 
 class EventOrganizer(models.Model):
@@ -14,7 +15,7 @@ class EventOrganizer(models.Model):
         max_length=1024,
         blank=True
     )
-    long_description = models.TextField(
+    long_description = tinymce_models.HTMLField(
         'Описание',
         blank=True
     )
