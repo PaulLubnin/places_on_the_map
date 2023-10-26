@@ -16,7 +16,6 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
             return
         return format_html(f'<img src="{obj.image.url}" height={200}px/>')
 
-
 @admin.register(EventOrganizer)
 class AdminEventOrganizer(admin.ModelAdmin):
     list_display = ('title',)
