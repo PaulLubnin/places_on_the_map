@@ -53,7 +53,7 @@ class Image(models.Model):
     )
     image = models.ImageField(
         'Картинка',
-        upload_to=f'images/',
+        upload_to='images/',
         blank=False
     )
     image_order = models.PositiveIntegerField(
