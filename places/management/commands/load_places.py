@@ -1,3 +1,6 @@
+import logging
+import sys
+
 import requests
 from django.core.files.base import ContentFile
 from django.core.management import BaseCommand
@@ -6,19 +9,22 @@ from places.models import EventOrganizer, Image
 
 
 class Command(BaseCommand):
-    help = 'Команда для загрузки данных из указанного источника.'
+    help = 'Команда для загрузки данных из указанного источника (GitHub).'
 
     def add_arguments(self, parser):
-        parser.add_argument('github_url', type=str)
+        parser.add_argument('-url', type=str, help='Ссылка на список данных.')
 
     def handle(self, *args, **options):
-        places = get_places(options['github_url'])
-        company_names = EventOrganizer.objects.values_list('title', flat=True)
-        for place in places:
-            if place['title'] not in company_names:
-                new_company = create_organizer_object(place)
-                for img_order, img_url in enumerate(place['imgs'], 1):
-                    create_image_object(img_url, new_company, img_order)
+        try:
+            places = get_places(options['url'])
+            company_names = EventOrganizer.objects.values_list('title', flat=True)
+            for place in places:
+                if place['title'] not in company_names:
+                    new_company = create_organizer_object(place)
+                    for img_order, img_url in enumerate(place['imgs'], 1):
+                        create_image_object(img_url, new_company, img_order)
+        except (requests.HTTPError, requests.ConnectionError):
+            logging.exception('Проблемы при загрузке данных', file=sys.stderr)
 
 
 def get_places(media_url: str) -> list:
