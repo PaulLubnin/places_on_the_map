@@ -37,5 +37,17 @@ ALLOWED_HOSTS=localhost, 127.0.0.1
 
 ## Как запустить:
 ```
+python manage.py migrate
+```
+
+```
 python manage.py runserver
+```
+
+### Данные:
+```
+python manage.py createsuperuser
+```
+```
+python manage.py load_places -url https://github.com/devmanorg/where-to-go-places/tree/master/places
 ```
