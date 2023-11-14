@@ -1,17 +1,18 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
+from environs import Env
 
-load_dotenv()
+env = Env()
+env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
+SECRET_KEY = env.str('DJANGO_SECRET_KEY', '')
 
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = env.bool('DEBUG', False)
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(', ') if os.getenv('ALLOWED_HOSTS') else None
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -90,7 +91,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / 'static']
 
 if not DEBUG:
     STATIC_ROOT = BASE_DIR / 'static'
