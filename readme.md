@@ -46,8 +46,10 @@ python manage.py runserver
 
 ### Данные:
 ```
-python manage.py createsuperuser
-```
-```
 python manage.py load_places -url https://github.com/devmanorg/where-to-go-places/tree/master/places
+```
+
+### Администрирование:
+```
+python manage.py createsuperuser
 ```
