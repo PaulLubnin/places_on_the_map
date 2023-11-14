@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ```
 DEBUG=True
 DJANGO_SECRET_KEY=long string
-ALLOWED_HOSTS=localhost, 127.0.0.1
+ALLOWED_HOSTS=localhost,127.0.0.1
 ```
 
 ## Как запустить:
