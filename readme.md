@@ -1,6 +1,7 @@
-# Яндекс.Афиша
+# Интересные места Москвы.
 Сайт - карта, на которой можно найти места для интересного времяпрепровождения.
 
+---
 ## Как установить
 Для установки необходим [Python>=3.8](https://www.python.org/downloads/) и [git](https://git-scm.com/downloads).
 После установки Python и Git можно приступать к разворачиванию проекта.
@@ -23,7 +24,7 @@ py -3.8 -m venv env
 ```
 env\Scripts\activate
 ```
-Затем из папки с проектом в командной строке наберите и установите необходимые зависимости:
+- затем из папки с проектом в командной строке наберите и установите необходимые зависимости:
 ```
 pip install -r requirements.txt
 ```
@@ -34,22 +35,26 @@ DEBUG=True
 DJANGO_SECRET_KEY=long string
 ALLOWED_HOSTS=localhost,127.0.0.1
 ```
-
-## Как запустить:
+---
+## Как запустить
+- создайте базу данных
 ```
 python manage.py migrate
 ```
-
+- запустите сервер
 ```
 python manage.py runserver
 ```
-
-### Данные:
+- заполнените БД данными, воспользовавшись командой:
 ```
 python manage.py load_places -url https://github.com/devmanorg/where-to-go-places/tree/master/places
 ```
-
-### Администрирование:
+---
+### Администрирование
+- для доступа к админке сайта необходимо создать администратора:
 ```
 python manage.py createsuperuser
 ```
+
+---
+Запущенный пример проекта можно посмотреть [тут](https://paulego.pythonanywhere.com/)
