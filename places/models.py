@@ -45,7 +45,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    """Фотографии организаторов мероприятий."""
+    """Фотографии локаций."""
 
     place = models.ForeignKey(
         Place,

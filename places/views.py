@@ -28,7 +28,7 @@ def index(request):
 
 
 def place_info(request, place_id):
-    """Данные по организатору."""
+    """Данные о локации."""
 
     place = get_object_or_404(Place, pk=place_id)
     place_data = {
