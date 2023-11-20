@@ -60,7 +60,8 @@ class Image(models.Model):
     )
     image_order = models.PositiveIntegerField(
         'Порядковый номер',
-        default='1',
+        default=0,
+        db_index=True,
         blank=False,
         null=False,
     )
