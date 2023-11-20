@@ -21,11 +21,13 @@ class EventOrganizer(models.Model):
     )
     longitude = models.FloatField(
         'Долгота',
-        default=0
+        null=False,
+        blank=False
     )
     latitude = models.FloatField(
         'Широта',
-        default=0
+        null=False,
+        blank=False
     )
 
     class Meta:
