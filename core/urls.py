@@ -3,12 +3,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from places.views import index, event_organizer
+from places.views import index, place_info
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('places/<int:organizer_id>', event_organizer, name='event_organizer'),
+    path('places/<int:place_id>', place_info, name='place_info'),
     path('tinymce/', include('tinymce.urls')),
 ]
 

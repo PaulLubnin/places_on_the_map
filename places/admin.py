@@ -2,7 +2,7 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import EventOrganizer, Image
+from .models import Place, Image
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -16,8 +16,9 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
             return
         return format_html(f'<img src="{obj.image.url}" height={200}px/>')
 
-@admin.register(EventOrganizer)
-class AdminEventOrganizer(admin.ModelAdmin):
+
+@admin.register(Place)
+class AdminPlace(admin.ModelAdmin):
     list_display = ('title',)
     inlines = (ImageInline,)
 

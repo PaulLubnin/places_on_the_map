@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
-from places.models import EventOrganizer
+from places.models import Place
 
 
 def index(request):
@@ -10,35 +10,35 @@ def index(request):
 
     template = 'index.html'
     context = {'places': {'type': 'FeatureCollection', 'features': []}}
-    organizers = EventOrganizer.objects.all()
-    for elem in organizers:
+    places = Place.objects.all()
+    for place in places:
         context['places']['features'].append({
             'type': "Feature",
             'geometry': {
                 'type': 'Point',
-                'coordinates': elem.coordinates()
+                'coordinates': place.coordinates()
             },
             'properties': {
-                'title': elem.title,
-                'placeId': elem.id,
-                'detailsUrl': reverse(event_organizer, args=(elem.id,))
+                'title': place.title,
+                'placeId': place.id,
+                'detailsUrl': reverse(place_info, args=(place.id,))
             }
         })
     return render(request, template_name=template, context=context)
 
 
-def event_organizer(request, organizer_id):
+def place_info(request, place_id):
     """Данные по организатору."""
 
-    organizer = get_object_or_404(EventOrganizer, pk=organizer_id)
-    organizer_data = {
-        'title': organizer.title,
-        'imgs': [picture.image.url for picture in organizer.images.order_by('image_order')],
-        'description_short': organizer.short_description,
-        'description_long': organizer.long_description,
+    place = get_object_or_404(Place, pk=place_id)
+    place_data = {
+        'title': place.title,
+        'imgs': [picture.image.url for picture in place.images.order_by('image_order')],
+        'description_short': place.short_description,
+        'description_long': place.long_description,
         'coordinates': {
-            'lat': organizer.latitude,
-            'lng': organizer.longitude,
+            'lat': place.latitude,
+            'lng': place.longitude,
         },
     }
-    return JsonResponse(data=organizer_data)
+    return JsonResponse(data=place_data)
