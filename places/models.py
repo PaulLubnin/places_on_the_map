@@ -56,7 +56,8 @@ class Image(models.Model):
     image = models.ImageField(
         'Картинка',
         upload_to='images/',
-        blank=False
+        null=True,
+        blank=True
     )
     image_order = models.PositiveIntegerField(
         'Порядковый номер',
