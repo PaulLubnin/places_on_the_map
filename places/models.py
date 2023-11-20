@@ -10,7 +10,7 @@ class EventOrganizer(models.Model):
         max_length=128,
         unique=True
     )
-    short_description = models.TextField(
+    short_description = models.CharField(
         'Краткое описание',
         max_length=1024,
         blank=True
