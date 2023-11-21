@@ -2,15 +2,15 @@ from django.db import models
 from tinymce import models as tinymce_models
 
 
-class EventOrganizer(models.Model):
-    """Организаторы мероприятий."""
+class Place(models.Model):
+    """Место для проведения досуга."""
 
     title = models.CharField(
-        'Название компании',
+        'Название локации',
         max_length=128,
         unique=True
     )
-    short_description = models.TextField(
+    short_description = models.CharField(
         'Краткое описание',
         max_length=1024,
         blank=True
@@ -21,16 +21,18 @@ class EventOrganizer(models.Model):
     )
     longitude = models.FloatField(
         'Долгота',
-        default=0
+        null=False,
+        blank=False
     )
     latitude = models.FloatField(
         'Широта',
-        default=0
+        null=False,
+        blank=False
     )
 
     class Meta:
-        verbose_name = 'Организатор'
-        verbose_name_plural = 'Организаторы'
+        verbose_name = 'Локация'
+        verbose_name_plural = 'Локации'
 
     def __str__(self):
         return self.title
@@ -43,22 +45,24 @@ class EventOrganizer(models.Model):
 
 
 class Image(models.Model):
-    """Фотографии организаторов мероприятий."""
+    """Фотографии локаций."""
 
-    event_organizer = models.ForeignKey(
-        EventOrganizer,
-        verbose_name='Организатор',
+    place = models.ForeignKey(
+        Place,
+        verbose_name='Локация',
         on_delete=models.CASCADE,
         related_name='images',
     )
     image = models.ImageField(
         'Картинка',
         upload_to='images/',
-        blank=False
+        null=True,
+        blank=True
     )
     image_order = models.PositiveIntegerField(
         'Порядковый номер',
-        default='1',
+        default=0,
+        db_index=True,
         blank=False,
         null=False,
     )
@@ -69,4 +73,4 @@ class Image(models.Model):
         ordering = ('image_order',)
 
     def __str__(self):
-        return f'{self.image_order} {self.event_organizer.title}'
+        return f'{self.image_order} {self.place.title}'
