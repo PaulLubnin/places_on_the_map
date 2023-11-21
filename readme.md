@@ -24,11 +24,19 @@ py -3.8 -m venv env
 ```
 env\Scripts\activate
 ```
-- затем из папки с проектом в командной строке наберите и установите необходимые зависимости:
-```
-pip install -r requirements.txt
-```
+- установите необходимые зависимости:
+
+    - на боевом сервере:
+    ```
+    pip install -r requirements.txt
+    ```
+  
+    - на локальной машине:
+    ```
+    pip install -r dev-requirements.txt
+    ```
 ---
+
 ## Переменные окружения
 
 Часть настроек проекта берётся из переменных окружения. Чтобы их определить, 
@@ -53,6 +61,10 @@ python manage.py runserver
 - заполнените БД данными, воспользовавшись командой:
 ```
 python manage.py load_places -url https://github.com/devmanorg/where-to-go-places/tree/master/places
+```
+- на боевом сервере подключите статику:
+```
+python manage.py collectstatic
 ```
 ---
 ### Администрирование
