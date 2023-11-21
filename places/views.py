@@ -30,7 +30,7 @@ def index(request):
 def place_info(request, place_id):
     """Данные о локации."""
 
-    place = get_object_or_404(Place, pk=place_id)
+    place = get_object_or_404(Place.objects.select_related(), pk=place_id)
     place_data = {
         'title': place.title,
         'imgs': [picture.image.url for picture in place.images.order_by('image_order')],
