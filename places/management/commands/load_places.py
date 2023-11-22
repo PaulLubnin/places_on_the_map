@@ -52,16 +52,18 @@ def get_one_place(media_url: str) -> dict:
 
 def create_place_object(place: dict):
     """Создание объекта Place."""
-    new_place, created = Place.objects.get_or_create(
+    acquired_place, created = Place.objects.get_or_create(
         title=place['title'],
-        short_description=place['description_short'],
-        long_description=place['description_long'],
-        longitude=place['coordinates']['lng'],
-        latitude=place['coordinates']['lat'],
+        defaults={
+            'short_description': place['description_short'],
+            'long_description': place['description_long'],
+            'longitude': place['coordinates']['lng'],
+            'latitude': place['coordinates']['lat']
+        },
     )
     if created:
         for img_order, img_url in enumerate(place['imgs'], 1):
-            create_place_image_objects(img_url, new_place, img_order)
+            create_place_image_objects(img_url, acquired_place, img_order)
 
 
 def create_place_image_objects(image_url: str, place: object, image_order: int):
