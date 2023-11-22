@@ -10,9 +10,8 @@ class Place(models.Model):
         max_length=128,
         unique=True
     )
-    short_description = models.CharField(
+    short_description = models.TextField(
         'Краткое описание',
-        max_length=1024,
         blank=True
     )
     long_description = tinymce_models.HTMLField(
@@ -56,8 +55,6 @@ class Image(models.Model):
     image = models.ImageField(
         'Картинка',
         upload_to='images/',
-        null=True,
-        blank=True
     )
     image_order = models.PositiveIntegerField(
         'Порядковый номер',
